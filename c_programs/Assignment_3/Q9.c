@@ -18,59 +18,8 @@
 
 
 #include<stdio.h>
-
-
-/*
- * helper function to calculate length of string
- *
- * @params
- *   str- string whose length to be calculate
- *
- * @return 
- *   length- length of string
- * */
-
-int str_len(char *str){
-
-	//variable to store length of string
-	int length=0;
-
-	//loop till the end of string and increment length 
-	while(str[length]!='\0'){
-	
-	     length++;
-	}
-
-	return length;
-}
-
-
-
-/*
- * helper function to implement power function
- *
- * @params
- *   base-  integer whose power is to be calculated
- *   power-  exponential power of integer to be calculated
- *
- * @return
- *   result-  base multiplied power times
- * */
-
-int custom_pow(int base, int power){
-
-	//variable to store the final result
-	int result = 1;
-
-
-	for(int i=0; i<power; i++){
-	
-	     	result *= base;    //multiply base power times
-	}
-
-
-	return result;          
-}
+#include "str_len.h"          //custom function to calculate length of string
+#include "custom_pow.h"     //custom function to implement pow function
 
 
 
@@ -93,54 +42,31 @@ int htoi(char *str){
 	for(int i=length-1; i>1; i--){
 	
 	    int digit;     //to store last digit of hexadecimal
-            
+            int values[6] = {10, 11, 12, 13, 14, 15}; 
 	
-	    //switch statement to determine last digit
-	    //of hexadecimal as a decimal value
-            switch (str[i]){
-	    
-		 case 'a':
-		 case 'A':
-		 digit = 10;    //decimal value of 'a' or 'A'
-	         break;
-	         
-	         case 'b':
-		 case 'B':
-		 digit = 11;     //decimal value of 'b' or 'B'
-		 break;
+	    //for lower case digits a-f
+	    if( (str[i] - 'a') >=0){
 
-		 case 'c':
-		 case 'C':
-		 digit = 12;     //decimal value of 'c' or 'C'
-		 break;
-
-
-		 case 'd':
-		 case 'D':
-		 digit = 13;     //decimal value of 'd' or 'D'
-		 break;
-
-
-		 case 'e':
-		 case 'E':
-		 digit = 14;      //decimal value of 'e' or 'E'
-		 break;
-
-
-		 case 'f':
-		 case 'F':
-		 digit = 15;      //decimal value of 'f' or 'F'
-		 break;
-
-		 default:
-		 digit = str[i] - '0';   //character to integer
-		 break;
+	        digit = values[str[i] - 'a'];	    
 	    }
-            
+
+            //for upper case digits A-F
+	    else if( (str[i] - 'A') >=0){
+	    
+		digit = values[str[i] - 'A'];
+	    }
+
+	    //for digits 0-9
+	    else{
+
+		digit = str[i] - '0';
+	    }
+
             //add the digit to the integer number 
             decimal_integer += digit * custom_pow(16, length-1-i);               
 
 	}
+
 
 	//return decimal integer value of hexadecimal string 
 	return decimal_integer;

@@ -14,27 +14,9 @@
 **/
 
 #include <stdio.h>
+#include "str_len.h"          //custom function to return length of string
 
 
-/*
-* The function returns length of a string
-* 
-* @params
-*  str- string whose length we need to calculate 
-*/
-int str_len(char* str){
-    
-    //initialise length of string as zero
-    int length=0;
-    
-    //loop from start of string to the end 
-    for(length=0;str[length]!='\0';){
-        
-        length++;           //increment length of string
-    }
-    
-    return length;
-}
 
 /*
 * This function reverses the given string

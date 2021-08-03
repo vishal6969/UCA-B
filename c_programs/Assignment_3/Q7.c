@@ -14,23 +14,9 @@
  * */
 
 #include<stdio.h>
+#include "str_len.h"   //custom function to return length of string
 
-/*
- * The function returns length of a string
- *
- * @params str[]- an array of characters 
- * */
-int str_len(char str[]){
 
-	int length;           //variable to store length of string
-
-	for(length = 0; str[length] != '\n'; ){
-		
-	     length++;        //increment length of string
-	}
-
-	return length;        
-}
 int main(){
    
 	char file[50];
