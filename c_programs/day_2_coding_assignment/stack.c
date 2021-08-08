@@ -48,7 +48,6 @@ void push(struct Stack *st, int n){
 	//declare pointers to the actual stack variables
 	int *size = &(st->size);
 	int *top = &(st->top);
-//	int *arr = st->arr;
  
 	//when stack is empty
 	if(*size == 0){
@@ -56,13 +55,17 @@ void push(struct Stack *st, int n){
 	    *size = DEFAULT_SIZE;         //initialise size of array
 	   
 	    st->arr = (int*) malloc(*size * sizeof(int));   //allocate memory to array
+
+	   
 	}
 
 	//when stack if full
 	if(*top == *size - 1){
 	
              *size = *size * 2;
-	     st->arr = (int*) malloc(*size * sizeof(int));
+
+	     //reallocate memory to the stack
+	     st->arr =  realloc(st->arr, *size * sizeof(int));
 	}
         //update top and element to the stack
 	*top = *top + 1;
@@ -86,6 +89,15 @@ int pop(struct Stack *st){
 	//declare pointers to the actual stack variables
 	int *top = &(st->top);
 	int *arr = st->arr;
+
+	//when stack is empty print error
+	if(*top == -1){
+
+	    printf("\nError: Stack Empty");
+
+	    return -1;
+	}
+
 
 	int n = arr[*top];      //topmost element in stack
 
@@ -157,5 +169,6 @@ int main(){
 	//check if stack is empty
 	printf("\nEmpty- %d", isEmpty(&st));           //0
 
+	
 	return 0;
 }
