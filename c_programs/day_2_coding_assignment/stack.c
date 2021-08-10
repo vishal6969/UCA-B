@@ -55,7 +55,8 @@ void push(struct Stack *st, int n){
 	    *size = DEFAULT_SIZE;         //initialise size of array
 	   
 	    st->arr = (int*) malloc(*size * sizeof(int));   //allocate memory to array
-
+      
+	    *top = -1;
 	   
 	}
 
