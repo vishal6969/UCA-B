@@ -25,5 +25,24 @@
 
 int sign(int n){
 
-	if(
+	int temp1 = -1;
+	int temp2 = 0x80000000;
+
+	return !(temp1 & n) ? 0 : (temp2 & n) ? -1 : 1;
+}
+
+
+//driver code
+
+int main(){
+
+	int n;       //integer number
+
+	//take input from user
+	printf("Enter number: ");
+	scanf("%d", &n);
+
+	//call sign function and display result
+	printf("\nSign: %d", sign(n));
+
 }
