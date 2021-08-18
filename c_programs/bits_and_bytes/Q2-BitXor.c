@@ -4,7 +4,7 @@
 *
 * Example bitAnd(4, 5) = 1
 * 
-* Legal ops:  ~ |  
+* Legal ops:  ~ & 
 * Max ops: 14
 *
 * @author 1910990171 Vishal
@@ -14,30 +14,21 @@
 
 #include<stdio.h>
 
-//helper function to calculate & of a,b 
-int bitAnd (int a, int b) {
-    
-    //1's complement of a,b
-    int complement_of_a = ~a; 
-    int complement_of_b = ~b;
-    
-     //complement of or of complement_of_b,complement_of_a
-     return ~(complement_of_a | complement_of_b);    
-}
 
 //function to calculate ^ of a,b
 int bitXor(int a,int b){
-     //1's complement of a,b
-    int complement_of_a = ~a; 
-    int complement_of_b = ~b;
+     //negation of a,b
+    int na = ~a; 
+    int nb = ~b;
     
-    //or of a,b
-    int or_a_b = a|b;
+    //and of a,b
+    int and_a_b = a&b;
+
+    //and of negation of a and b
+    int and_na_nb = na & nb;
     
-    //or of complement_of_a,complement_of_b
-    int or_complement_a_b = complement_of_a|complement_of_b;
     
-    return bitAnd(or_a_b,or_complement_a_b);    //and of or_a_b , or_complement_a_b using bitAnd function
+    return ~and_a_b & ~and_na_nb;
 }
 
 //driver code
